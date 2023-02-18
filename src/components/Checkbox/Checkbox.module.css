@@ -1,0 +1,14 @@
+.checkbox {
+  border-radius: 99999px;
+}
+
+.checkbox[data-checked="true"]::before {
+  content: "";
+  position: absolute;
+  height: 60%;
+  aspect-ratio: 1;
+
+  background-color: black;
+  transform: translate(-50%, -50%);
+  border-radius: inherit;
+}

@@ -1,0 +1,29 @@
+.wrapper {
+  position: relative;
+  -webkit-box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.75);
+  padding: 2.5rem;
+  width: fit-content;
+  height: fit-content;
+  background-color: white;
+  margin: 10px auto;
+}
+
+.container {
+  position: relative;
+
+  background-size: contain;
+  overflow: hidden;
+  padding: 10px;
+}
+
+.vertical {
+  width: min(90vw, 789.917px);
+  aspect-ratio: 20.9 / 27.14;
+}
+
+.horizontal {
+  width: min(90vw, 22.41cm);
+  aspect-ratio: 22.41 / 15.73;
+}

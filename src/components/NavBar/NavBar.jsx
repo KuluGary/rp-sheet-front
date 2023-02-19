@@ -63,7 +63,7 @@ const NavBar = ({ data, setData, type, onAddFile }) => {
         <ArrowLeft size={32} />
       </button>
       <div className="relative flex items-center">
-        <AddFileDropdown show={show} setShow={setShow} handleSelect={handleAddFile} />
+        <AddFileDropdown show={show} setShow={setShow} handleSelect={handleAddFile} type={type} />
         <Link to={"/help"} title="Ir a ayuda" className="hover:bg-neutral-300 rounded-full p-1">
           <Info size={32} />
         </Link>

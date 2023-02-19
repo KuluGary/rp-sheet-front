@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { getNestedKey, setNestedKey, swapElements } from "../../utils/util";
+import { getNestedKey, setNestedKey, swapElements } from "@/utils/util";
 import ErrorHandler from "@/components/ErrorHandler/ErrorHandler";
 import NavBar from "@/components/NavBar/NavBar";
 import CharacterData from "./CharacterData/characterData.view";
@@ -107,23 +107,6 @@ const DND5e = () => {
           );
         })}
       </div>
-      {/* {Object.keys(pages)?.map((key, index) => {
-        const page = pages[key];
-        const Component = components[page.type];
-        const pageIndex = index + 1;
-        
-        return (
-          <Component
-            key={index}
-            pages={pages}
-            setPages={setPages}
-            pageIndex={pageIndex}
-            handleChangeTextInput={(ev) => handleChangeTextInput(pageIndex, ev)}
-            handleChangeCheckbox={(ev) => handleChangeCheckbox(pageIndex, ev)}
-            handleChangePage={(ev) => handleChangePage(pageIndex, ev)}
-          />
-        );
-      })} */}
     </ErrorHandler>
   );
 };

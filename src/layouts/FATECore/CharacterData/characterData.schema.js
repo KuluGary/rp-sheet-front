@@ -1,4 +1,4 @@
-export const fateCoreSchema = {
+export const characterDataSchema = {
   name: {
     position: { y: 58, x: 18 },
     className: "absolute h-4 w-[484px] text-sm",
@@ -73,7 +73,7 @@ export const fateCoreSchema = {
   },
 };
 
-export const fateCoreSkillsSchema = {
+export const characterSkillsSchema = {
   superb: {
     startsAt: { x: 434, y: 175 },
   },
@@ -91,7 +91,7 @@ export const fateCoreSkillsSchema = {
   },
 };
 
-export const fateCoreStressSchema = {
+export const characterStressSchema = {
   mentalstress: {
     startsAt: { y: 531, x: 26 },
     distanceOffset: 48,

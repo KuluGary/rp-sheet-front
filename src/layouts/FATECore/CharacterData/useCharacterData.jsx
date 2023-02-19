@@ -1,24 +1,24 @@
 import { useInputs } from "@/hooks/useInputs";
-import * as mappers from "./fateCore.mapper";
-import { fateCoreSchema, fateCoreSkillsSchema, fateCoreStressSchema } from "./fateCore.schema";
+import { characterDataSchema, characterSkillsSchema, characterStressSchema } from "./characterData.schema";
+import * as mappers from "./characterData.mapper";
 
 const useFateCore = ({ page, handleChangeTextInput, handleChangeCheckbox }) => {
   const sharedProps = { page, handleChangeCheckbox, handleChangeTextInput };
 
   const inputs = useInputs({
-    inputs: fateCoreSchema,
+    inputs: characterDataSchema,
     ...sharedProps,
     mapper: mappers.baseInputMapper,
   });
 
   const skills = useInputs({
-    inputs: fateCoreSkillsSchema,
+    inputs: characterSkillsSchema,
     ...sharedProps,
     mapper: mappers.skillMapper,
   });
 
   const stress = useInputs({
-    inputs: fateCoreStressSchema,
+    inputs: characterStressSchema,
     ...sharedProps,
     mapper: mappers.stressMapper,
   });

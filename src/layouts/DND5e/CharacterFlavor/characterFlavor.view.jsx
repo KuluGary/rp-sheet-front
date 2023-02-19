@@ -30,7 +30,7 @@ const CharacterFlavor = ({ pages, pageIndex, handleChangeTextInput, handleChange
       {data}
 
       <section id="image-input">
-        <div className="absolute top-[144px] left-[35px] w-[215px] h-[300px] flex items-center justify-center z-10 pointer-events-none bg-white">
+        <div className="absolute top-[144px] left-[35px] w-[215px] h-[300px] flex items-center justify-center z-10 pointer-events-none bg-white overflow-hidden">
           <img src={page?.avatar} className="object-cover" />
         </div>
 

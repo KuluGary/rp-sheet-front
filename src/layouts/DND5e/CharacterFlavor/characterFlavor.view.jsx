@@ -1,12 +1,10 @@
-import React from "react";
-import Sheet from "@/components/Sheet/Sheet";
 import backgroundImage from "@/assets/character-flavor.jpg";
-import { useInputs } from "@/hooks/useInputs";
-import { characterFlavorSchema } from "./characterFlavor.schema";
+import Sheet from "@/components/Sheet/Sheet";
+import React from "react";
 import useCharacterFlavor from "./useCharacterFlavor";
 
-const CharacterFlavor = ({ pages, pageIndex, handleChangeTextInput, handleChangePage }) => {
-  const page = pages[pageIndex].data;
+const CharacterFlavor = ({ pages, pageIndex, handleChangeTextInput, handleChangePage, handleDeletePage }) => {
+  const page = pages[pageIndex]?.data;
   const data = useCharacterFlavor({ page, handleChangeTextInput });
 
   const handleImageChange = async (ev) => {
@@ -26,7 +24,12 @@ const CharacterFlavor = ({ pages, pageIndex, handleChangeTextInput, handleChange
     });
 
   return (
-    <Sheet background={backgroundImage} pageIndex={pageIndex} handleChangePage={handleChangePage}>
+    <Sheet
+      background={backgroundImage}
+      pageIndex={pageIndex}
+      handleChangePage={handleChangePage}
+      handleDeletePage={handleDeletePage}
+    >
       {data}
 
       <section id="image-input">

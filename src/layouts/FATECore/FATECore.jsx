@@ -74,6 +74,17 @@ const FATECore = () => {
     setPages(newPages);
   };
 
+  const handleDeleteFile = (pageIndex) => {
+    let newPages = Object.values(structuredClone(pages));
+    newPages.splice(parseInt(pageIndex) - 1, 1);
+    newPages = newPages.reduce((result, item, index) => {
+      result[index + 1] = item;
+      return result;
+    }, {});
+
+    setPages(newPages);
+  };
+
   return (
     <ErrorHandler>
       <NavBar data={pages} setData={setPages} type={"fate-core"} onAddFile={handleAddFile} />
@@ -98,6 +109,8 @@ const FATECore = () => {
                 handleChangeTextInput={(ev) => handleChangeTextInput(pageIndex, ev)}
                 handleChangeCheckbox={(ev) => handleChangeCheckbox(pageIndex, ev)}
                 handleChangePage={(ev) => handleChangePage(pageIndex, ev)}
+                handleDeletePage={() => handleDeleteFile(pageIndex)}
+
               />
             </animated.div>
           );

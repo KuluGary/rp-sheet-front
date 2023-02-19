@@ -8,6 +8,16 @@
   height: fit-content;
   background-color: white;
   margin: 10px auto;
+  overflow: hidden;
+}
+
+.cancel-button {
+  transform: translateX(200%);
+  transition: transform 250ms linear;
+}
+
+.wrapper:hover .cancel-button {
+  transform: translateX(0);
 }
 
 .container {

@@ -5,7 +5,7 @@ import NavBar from "@/components/NavBar/NavBar";
 import CharacterData from "./CharacterData/characterData.view";
 import CharacterFlavor from "./CharacterFlavor/characterFlavor.view";
 import CharacterFeatures from "./CharacterFeatures/characterFeatures.view";
-import CharacterSpells from "./CharacterSpells/CharacterSpells";
+import CharacterSpells from "./CharacterSpells/characterSpells.view";
 import { useTransition, animated } from "@react-spring/web";
 import { v4 as uuidv4 } from "uuid";
 
@@ -78,6 +78,17 @@ const DND5e = () => {
     setPages(newPages);
   };
 
+  const handleDeleteFile = (pageIndex) => {
+    let newPages = Object.values(structuredClone(pages));
+    newPages.splice(parseInt(pageIndex) - 1, 1);
+    newPages = newPages.reduce((result, item, index) => {
+      result[index + 1] = item;
+      return result;
+    }, {});
+
+    setPages(newPages);
+  };
+
   return (
     <ErrorHandler>
       <NavBar data={pages} setData={setPages} type={"dnd5e"} onAddFile={handleAddFile} />
@@ -102,6 +113,7 @@ const DND5e = () => {
                 handleChangeTextInput={(ev) => handleChangeTextInput(pageIndex, ev)}
                 handleChangeCheckbox={(ev) => handleChangeCheckbox(pageIndex, ev)}
                 handleChangePage={(ev) => handleChangePage(pageIndex, ev)}
+                handleDeletePage={() => handleDeleteFile(pageIndex)}
               />
             </animated.div>
           );

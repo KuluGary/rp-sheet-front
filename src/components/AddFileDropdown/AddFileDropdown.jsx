@@ -9,6 +9,20 @@ const AddFileDropdown = ({ show, setShow, handleSelect, type = "dnd5e" }) => {
         <>
           <button
             onClick={handleSelect}
+            name="data"
+            className="overflow-hidden whitespace-nowrap py-1 my-2 px-2 w-full hover:bg-neutral-100"
+          >
+            Añadir página principal
+          </button>
+          <button
+            onClick={handleSelect}
+            name="flavor"
+            className="overflow-hidden whitespace-nowrap py-1 my-2 px-2 w-full hover:bg-neutral-100"
+          >
+            Añadir página de trasfondo
+          </button>
+          <button
+            onClick={handleSelect}
             name="spells"
             className="overflow-hidden whitespace-nowrap py-1 my-2 px-2 w-full hover:bg-neutral-100"
           >
@@ -24,13 +38,22 @@ const AddFileDropdown = ({ show, setShow, handleSelect, type = "dnd5e" }) => {
         </>
       )}
       {type === "fate-core" && (
-        <button
-          onClick={handleSelect}
-          name="flavor"
-          className="overflow-hidden whitespace-nowrap py-1 my-2 px-2 w-full hover:bg-neutral-100"
-        >
-          Añadir página de notas
-        </button>
+        <>
+          <button
+            onClick={handleSelect}
+            name="data"
+            className="overflow-hidden whitespace-nowrap py-1 my-2 px-2 w-full hover:bg-neutral-100"
+          >
+            Añadir página principal
+          </button>
+          <button
+            onClick={handleSelect}
+            name="flavor"
+            className="overflow-hidden whitespace-nowrap py-1 my-2 px-2 w-full hover:bg-neutral-100"
+          >
+            Añadir página de notas
+          </button>
+        </>
       )}
       <button
         className="overflow-hidden whitespace-nowrap py-1 my-2 px-2 w-full hover:bg-neutral-100"

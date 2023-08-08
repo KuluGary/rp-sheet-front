@@ -39,7 +39,7 @@ const NavBar = ({ data, setData, type, onAddFile }) => {
 
   const handleDownloadPdf = async () => {
     const fileName = `${data?.["1"]?.data?.name ?? data?.name}.${type}.pdf`;
-    const { payload: base64 } = await downloadPdf(data);
+    const { payload: base64 } = await downloadPdf(type, data);
     const file = await fetch(base64).then((res) => res.blob());
 
     const a = document.createElement("a");

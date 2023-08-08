@@ -1,11 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
 import AddFileDropdown from "@/components/AddFileDropdown/AddFileDropdown";
+import ArrowLeft from "@/components/Icons/ArrowLeft";
+import FileAdd from "@/components/Icons/FileAdd";
+import FileDownload from "@/components/Icons/FileDownload";
+import FileUpload from "@/components/Icons/FileUpload";
+import Info from "@/components/Icons/Info";
+import Pdf from "@/components/Icons/Pdf";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import FileDownload from "../Icons/FileDownload";
-import FileAdd from "../Icons/FileAdd";
-import FileUpload from "../Icons/FileUpload";
-import Info from "../Icons/Info";
-import ArrowLeft from "../Icons/ArrowLeft";
+import { downloadPdf } from "../../services/sheet";
 
 const NavBar = ({ data, setData, type, onAddFile }) => {
   const navigate = useNavigate();
@@ -25,9 +27,21 @@ const NavBar = ({ data, setData, type, onAddFile }) => {
     return () => (window.onscroll = null);
   });
 
-  const handleDownload = () => {
+  const handleDownloadJson = () => {
     const fileName = `${data?.["1"]?.data?.name ?? data?.name}.${type}.json`;
     const file = new Blob([JSON.stringify(data)], { type: "application/json", name: fileName });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(file);
+    a.download = fileName;
+    a.click();
+    setShow(false);
+  };
+
+  const handleDownloadPdf = async () => {
+    const fileName = `${data?.["1"]?.data?.name ?? data?.name}.${type}.pdf`;
+    const { payload: base64 } = await downloadPdf(data);
+    const file = await fetch(base64).then((res) => res.blob());
+
     const a = document.createElement("a");
     a.href = URL.createObjectURL(file);
     a.download = fileName;
@@ -97,10 +111,20 @@ const NavBar = ({ data, setData, type, onAddFile }) => {
         {data && (
           <button
             title="Descargar como JSON"
-            onClick={handleDownload}
+            onClick={handleDownloadJson}
             className="hover:bg-neutral-300 rounded-full p-1"
           >
             <FileDownload size={32} />
+          </button>
+        )}
+
+        {data && (
+          <button
+            title="Descargar como PDF"
+            onClick={handleDownloadPdf}
+            className="hover:bg-neutral-300 rounded-full p-1"
+          >
+            <Pdf size={32} />
           </button>
         )}
       </div>

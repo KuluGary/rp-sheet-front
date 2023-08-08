@@ -1,8 +1,9 @@
+import Cancel from "@/components/Icons/Cancel";
 import React from "react";
 import classNames from "./Sheet.module.css";
-import Cancel from "@/components/Icons/Cancel";
 
 const Sheet = ({ children, background, disposition = "vertical", pageIndex, handleChangePage, handleDeletePage }) => {
+
   return (
     <div className={classNames.wrapper}>
       <div

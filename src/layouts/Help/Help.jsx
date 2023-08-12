@@ -20,7 +20,7 @@ const Help = () => {
         <p className="my-4">
           Una vez hayas creado tu ficha o quieras guardar, pulsa el botón <FileDownload size={28} color={"black"} />
           en tu barra de navegación para guardar el archivo. Los archivos descargados tendrán un formato del tipo{" "}
-          <code>NombreDePersonaje.dnd5e.json</code>, y contendrán toda la información del personaje que acabas de crear.
+          <code>NombreDePersonaje.juego.json</code>, y contendrán toda la información del personaje que acabas de crear.
         </p>
         <h3 className="font-bold text-lg">Cargar tu ficha</h3>
         <p className="my-4">

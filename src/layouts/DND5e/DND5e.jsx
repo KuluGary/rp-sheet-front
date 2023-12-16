@@ -70,7 +70,7 @@ const DND5e = () => {
   const handleAddFile = (e) => {
     const type = e.target.name;
     const pageNumbers = Object.keys(pages).sort();
-    const latestIndex = parseInt(pageNumbers[pageNumbers.length - 1]);
+    const latestIndex = parseInt(pageNumbers[pageNumbers.length - 1] ?? 0);
 
     const newPages = { ...pages };
     newPages[latestIndex + 1] = { id: uuidv4(), type, data: {} };

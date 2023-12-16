@@ -5,6 +5,7 @@ import DND5e from "@/layouts/DND5e/DND5e";
 import NavigationError from "@/components/NavigationError/NavigationError";
 import FATECore from "@/layouts/FATECore/FATECore";
 import Help from "@/layouts/Help/Help";
+import KidsOnBikes from "../../layouts/KidsOnBikes/KidsOnBikes";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,11 @@ const router = createBrowserRouter([
   {
     path: "/fate-core",
     element: <FATECore />,
+    errorElement: <NavigationError />,
+  },
+  {
+    path: "/kids-on-bikes",
+    element: <KidsOnBikes />,
     errorElement: <NavigationError />,
   },
   {

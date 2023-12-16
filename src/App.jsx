@@ -22,6 +22,12 @@ export default function App() {
           </div>
           <div className="flex gap-2 border-b border-b-neutral-200 my-2 py-4 pr-64 w-full">
             <File size={28} color={"black"} />
+            <Link to={`/kids-on-bikes`} className="hover:underline">
+              Kids On Bikes
+            </Link>
+          </div>
+          <div className="flex gap-2 border-b border-b-neutral-200 my-2 py-4 pr-64 w-full">
+            <File size={28} color={"black"} />
             <Link to={`/help`} className="hover:underline">
               Help
             </Link>

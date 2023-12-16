@@ -110,18 +110,11 @@ const FATECore = () => {
                 handleChangeCheckbox={(ev) => handleChangeCheckbox(pageIndex, ev)}
                 handleChangePage={(ev) => handleChangePage(pageIndex, ev)}
                 handleDeletePage={() => handleDeleteFile(pageIndex)}
-
               />
             </animated.div>
           );
         })}
       </div>
-
-      {/* <div className="mt-20">
-        <Sheet background={backgroundImage} disposition="horizontal">
-          {inputs}
-        </Sheet>
-      </div> */}
     </ErrorHandler>
   );
 };

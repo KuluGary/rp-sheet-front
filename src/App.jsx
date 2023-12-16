@@ -29,7 +29,7 @@ export default function App() {
           <div className="flex gap-2 border-b border-b-neutral-200 my-2 py-4 pr-64 w-full">
             <File size={28} color={"black"} />
             <Link to={`/help`} className="hover:underline">
-              Help
+              Información
             </Link>
           </div>
         </div>

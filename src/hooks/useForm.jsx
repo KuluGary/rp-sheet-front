@@ -22,6 +22,14 @@ export const useForm = (pages, setPages) => {
     setPages(newPages);
   };
 
+  const handleChangeContentEditable = (pageIndex, name, value) => {
+    const selectedPageData = { ...pages[pageIndex].data, ...setNestedKey(name, pages[pageIndex].data, value) };
+    const newPages = structuredClone(pages);
+    newPages[pageIndex].data = selectedPageData;
+
+    setPages(newPages);
+  };
+
   const handleChangePage = (currentIndex, ev) => {
     const newPages = structuredClone(pages);
     const newIndex = ev.target.valueAsNumber;
@@ -57,5 +65,12 @@ export const useForm = (pages, setPages) => {
     setPages(newPages);
   };
 
-  return { handleAddFile, handleChangeCheckbox, handleChangePage, handleChangeTextInput, handleDeleteFile };
+  return {
+    handleAddFile,
+    handleChangeCheckbox,
+    handleChangePage,
+    handleChangeTextInput,
+    handleDeleteFile,
+    handleChangeContentEditable,
+  };
 };

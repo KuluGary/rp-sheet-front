@@ -17,10 +17,14 @@ function KidsOnBikes() {
   });
 
   const transitions = useTransitions(pages);
-  const { handleAddFile, handleChangeTextInput, handleChangeCheckbox, handleChangePage, handleDeleteFile } = useForm(
-    pages,
-    setPages
-  );
+  const {
+    handleAddFile,
+    handleChangeTextInput,
+    handleChangeCheckbox,
+    handleChangePage,
+    handleDeleteFile,
+    handleChangeContentEditable,
+  } = useForm(pages, setPages);
 
   return (
     <ErrorHandler>
@@ -47,6 +51,7 @@ function KidsOnBikes() {
                 handleChangeCheckbox={(ev) => handleChangeCheckbox(pageIndex, ev)}
                 handleChangePage={(ev) => handleChangePage(pageIndex, ev)}
                 handleDeletePage={() => handleDeleteFile(pageIndex)}
+                handleChangeContentEditable={(name, value) => handleChangeContentEditable(pageIndex, name, value)}
               />
             </animated.div>
           );

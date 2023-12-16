@@ -3,7 +3,12 @@ import Checkbox from "@/components/Checkbox/Checkbox";
 
 export const baseInputMapper = (
   [name = "", data = ""],
-  { page = 1, handleChangeTextInput = () => {}, handleChangeCheckbox = () => {} }
+  {
+    page = 1,
+    handleChangeTextInput = () => {},
+    handleChangeCheckbox = () => {},
+    handleChangeContentEditable = () => {},
+  }
 ) => {
   const { type, position, placeholder = "", className } = data;
 
@@ -31,6 +36,21 @@ export const baseInputMapper = (
         style={{ top: position.y, left: position.x }}
       />
     );
+
+  if (type === "contenteditable") {
+    return (
+      <div key={name} className={className} style={{ top: position.y, left: position.x }}>
+        <div className={`${data.block.className}`} />
+        <div
+          contentEditable
+          className={data.textarea.className}
+          onBlur={(e) => handleChangeContentEditable(name, e.currentTarget.textContent)}
+          dangerouslySetInnerHTML={{ __html: getNestedKey(name, page) }}
+          suppressContentEditableWarning={true}
+        />
+      </div>
+    );
+  }
 
   return (
     <input

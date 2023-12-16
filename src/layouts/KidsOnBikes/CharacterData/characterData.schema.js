@@ -24,52 +24,40 @@ export const characterDataSchema = {
     type: "input",
   },
   motivation: {
-    position: { y: 282, x: 174 },
-    className: "absolute h-5 w-[184px] text-lg font-bold",
+    position: { y: 274, x: 74 },
+    className: "absolute h-14 w-[284px] text-lg font-bold ",
     placeholder: "",
-    type: "input",
-  },
-  motivation2: {
-    position: { y: 310, x: 74 },
-    className: "absolute h-5 w-[275px] text-lg font-bold",
-    placeholder: "",
-    type: "input",
+    type: "contenteditable",
+    block: {
+      className: "w-24 h-5 mr-2 float-left",
+    },
+    textarea: {
+      className: "h-14 font-shadows",
+    },
   },
   flaws: {
-    position: { y: 340, x: 168 },
-    className: "absolute h-5 w-[182px] text-lg font-bold",
+    position: { y: 333, x: 74 },
+    className: "absolute h-14 w-[284px] text-lg font-bold ",
     placeholder: "",
-    type: "input",
-  },
-  flaws2: {
-    position: { y: 369, x: 74 },
-    className: "absolute h-5 w-[275px] text-lg font-bold",
-    placeholder: "",
-    type: "input",
+    type: "contenteditable",
+    block: {
+      className: "w-20 h-5 mr-4 float-left",
+    },
+    textarea: {
+      className: "h-14 font-shadows",
+    },
   },
   description: {
-    position: { y: 400, x: 190 },
-    className: "absolute h-5 w-[164px] text-lg font-bold",
+    position: { y: 396, x: 74 },
+    className: "absolute h-28 w-[284px] text-lg font-bold ",
     placeholder: "",
-    type: "input",
-  },
-  description2: {
-    position: { y: 429, x: 74 },
-    className: "absolute h-5 w-[275px] text-lg font-bold",
-    placeholder: "",
-    type: "input",
-  },
-  description3: {
-    position: { y: 457, x: 74 },
-    className: "absolute h-5 w-[275px] text-lg font-bold",
-    placeholder: "",
-    type: "input",
-  },
-  description4: {
-    position: { y: 485, x: 74 },
-    className: "absolute h-5 w-[275px] text-lg font-bold",
-    placeholder: "",
-    type: "input",
+    type: "contenteditable",
+    block: {
+      className: "w-24 h-5 mr-4 float-left",
+    },
+    textarea: {
+      className: "h-full font-shadows",
+    },
   },
   fight: {
     position: { y: 228, x: 414 },
@@ -108,22 +96,34 @@ export const characterDataSchema = {
     type: "input",
   },
   backpack: {
-    position: { y: 553, x: 420 },
-    className: "absolute h-36 w-[284px] font-bold text-lg",
+    position: { y: 546, x: 350 },
+    className: "absolute h-42 w-[364px] text-md font-bold ",
     placeholder: "",
-    type: "textarea",
+    type: "contenteditable",
+    block: {
+      className: "w-16 h-16 mr-4 float-left",
+    },
+    textarea: {
+      className: "h-42 font-shadows",
+    },
   },
   tokens: {
-    position: { y: 717, x: 646 },
-    className: "absolute h-6 w-[65px] font-bold text-lg",
+    position: { y: 717, x: 648 },
+    className: "absolute h-6 w-[63px] font-bold text-lg text-center",
     placeholder: "",
     type: "input",
   },
   notes: {
-    position: { y: 797, x: 348 },
-    className: "absolute h-32 w-[365px] font-bold text-lg",
+    position: { y: 770, x: 348 },
+    className: "absolute h-42 w-[364px] text-md font-bold",
     placeholder: "",
-    type: "textarea",
+    type: "contenteditable",
+    block: {
+      className: "w-14 h-4 mr-4 float-left",
+    },
+    textarea: {
+      className: "h-full font-shadows",
+    },
   },
   skilled: {
     position: { y: 752, x: 124 },

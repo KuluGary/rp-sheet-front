@@ -9,9 +9,10 @@ const CharacterData = ({
   handleChangeTextInput,
   handleChangePage,
   handleDeletePage,
+  handleChangeContentEditable,
 }) => {
   const page = pages[pageIndex]?.data;
-  const data = useCharacterData({ page, handleChangeCheckbox, handleChangeTextInput });
+  const data = useCharacterData({ page, handleChangeCheckbox, handleChangeTextInput, handleChangeContentEditable });
 
   return (
     <Sheet

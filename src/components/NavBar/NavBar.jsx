@@ -8,7 +8,6 @@ import Pdf from "@/components/Icons/Pdf";
 import Spinner from "@/components/Icons/Spinner";
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { downloadPdf } from "../../services/sheet";
 import UnsavedHandler from "../UnsavedHandler/UnsavedHandler";
 
 const NavBar = ({ data, setData, type, onAddFile }) => {
@@ -42,19 +41,7 @@ const NavBar = ({ data, setData, type, onAddFile }) => {
   };
 
   const handleDownloadPdf = async () => {
-    setLoading(true);
-    const fileName = `${data?.["1"]?.data?.name ?? data?.name}.${type}.pdf`;
-    const { payload: base64 } = await downloadPdf(type, data);
-    const file = await fetch(base64)
-      .then((res) => res.blob())
-      .catch(() => setLoading(false));
-
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(file);
-    a.download = fileName;
-    a.click();
-    setShow(false);
-    setLoading(false);
+    window.print();
   };
 
   const handleUpload = (event) => {
@@ -78,7 +65,7 @@ const NavBar = ({ data, setData, type, onAddFile }) => {
   return (
     <UnsavedHandler data={data} hasUnsavedChanges={hasUnsavedChanges} setHasUnsavedChanges={setHasUnsavedChanges}>
       <nav
-        className={`fixed top-0 px-10 py-4 z-20 w-full flex justify-between backdrop-blur-sm transition-shadow ${
+        className={`fixed top-0 px-10 py-4 z-20 w-full flex justify-between backdrop-blur-sm transition-shadow print:hidden ${
           isTop ? "" : "shadow-md"
         }`}
       >

@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 import CharacterData from "./CharacterData/characterData.view";
 import CharacterFlavor from "./CharacterFlavor/characterFlavor.view";
 import { getNestedKey, setNestedKey, swapElements } from "@/utils/util";
+import classNames from "./FATECore.module.css";
 
 const components = {
   data: CharacterData,
@@ -86,36 +87,37 @@ const FATECore = () => {
   };
 
   return (
-    <ErrorHandler>
-      <NavBar data={pages} setData={setPages} type={"fate-core"} onAddFile={handleAddFile} />
-      <div className="flex justify-center mt-16">
-        {transitions(({ y, ...rest }, page, { key }) => {
-          const Component = components[page.type];
-          const pageIndex = page.pageIndex;
-
-          return (
-            <animated.div
-              key={key}
-              style={{
-                transform: y.to((y) => `translate3d(0,${y}px,0)`),
-                ...rest,
-                margin: "10px auto",
-              }}
-            >
-              <Component
-                pages={pages}
-                setPages={setPages}
-                pageIndex={pageIndex}
-                handleChangeTextInput={(ev) => handleChangeTextInput(pageIndex, ev)}
-                handleChangeCheckbox={(ev) => handleChangeCheckbox(pageIndex, ev)}
-                handleChangePage={(ev) => handleChangePage(pageIndex, ev)}
-                handleDeletePage={() => handleDeleteFile(pageIndex)}
-              />
-            </animated.div>
-          );
-        })}
-      </div>
-    </ErrorHandler>
+    <div className={classNames.container}>
+      <ErrorHandler>
+        <NavBar data={pages} setData={setPages} type={"fate-core"} onAddFile={handleAddFile} />
+        <div className="flex justify-center mt-16 print:mt-0">
+          {transitions(({ y, ...rest }, page, { key }) => {
+            const Component = components[page.type];
+            const pageIndex = page.pageIndex;
+            return (
+              <animated.div
+                key={key}
+                className="my-10 mx-auto print:my-0"
+                style={{
+                  transform: y.to((y) => `translate3d(0,${y}px,0)`),
+                  ...rest,
+                }}
+              >
+                <Component
+                  pages={pages}
+                  setPages={setPages}
+                  pageIndex={pageIndex}
+                  handleChangeTextInput={(ev) => handleChangeTextInput(pageIndex, ev)}
+                  handleChangeCheckbox={(ev) => handleChangeCheckbox(pageIndex, ev)}
+                  handleChangePage={(ev) => handleChangePage(pageIndex, ev)}
+                  handleDeletePage={() => handleDeleteFile(pageIndex)}
+                />
+              </animated.div>
+            );
+          })}
+        </div>
+      </ErrorHandler>
+    </div>
   );
 };
 

@@ -1,39 +1,40 @@
-.wrapper {
-  position: relative;
-  -webkit-box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.75);
-  box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.75);
-  padding: 2.5rem;
-  width: fit-content;
-  height: fit-content;
-  background-color: white;
-  margin: 10px auto;
-  overflow: hidden;
-}
+@media screen {
+  .wrapper {
+    position: relative;
+    -webkit-box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.75);
+    padding: 2.5rem;
+    width: fit-content;
+    height: fit-content;
+    background-color: white;
+    margin: 10px auto;
+    overflow: hidden;
+  }
 
-.cancel-button {
-  transform: translateX(200%);
-  transition: transform 250ms linear;
-}
+  .cancel-button {
+    transform: translateX(200%);
+    transition: transform 250ms linear;
+  }
 
-.wrapper:hover .cancel-button {
-  transform: translateX(0);
-}
+  .wrapper:hover .cancel-button {
+    transform: translateX(0);
+  }
 
-.container {
-  position: relative;
+  .container {
+    position: relative;
 
-  background-size: contain;
-  overflow: hidden;
-  padding: 10px;
-}
+    background-size: contain;
+    overflow: hidden;
+  }
 
-.vertical {
-  width: min(90vw, 789.917px);
-  aspect-ratio: 20.9 / 27.14;
-}
+  .vertical {
+    width: min(90vw, 789.917px);
+    aspect-ratio: 20.9 / 27.14;
+  }
 
-.horizontal {
-  width: min(90vw, 22.41cm);
-  aspect-ratio: 22.41 / 15.73;
+  .horizontal {
+    width: min(90vw, 22.41cm);
+    aspect-ratio: 22.41 / 15.73;
+  }
 }

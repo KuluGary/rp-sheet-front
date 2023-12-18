@@ -15,7 +15,6 @@ const components = {
 function KidsOnBikes() {
   const [pages, setPages] = useState({
     1: { id: uuidv4(), type: "data", data: {} },
-    2: { id: uuidv4(), type: "data", data: {} },
   });
 
   const transitions = useTransitions(pages);

@@ -5,9 +5,12 @@ import classNames from "./Sheet.module.css";
 const Sheet = ({ children, background, disposition = "vertical", pageIndex, handleChangePage, handleDeletePage }) => {
   return (
     <div className={classNames.wrapper}>
-      <div className={`${classNames.container} ${classNames[disposition]} m-[1px]`}>
+      <div
+        className={`${classNames.container} ${classNames[disposition]} m-[1px]`}
+        style={{ backgroundImage: `url(${background})`, backgroundRepeat: "no-repeat", backgroundPositionX: "center" }}
+      >
         {children}
-        <img src={background} className="w-auto h-full -z-10 mx-auto" />
+        <img src={background} className="w-auto h-full -z-10 mx-auto screen:hidden" />
       </div>
       {pageIndex && (
         <div className="absolute bottom-2 w-full text-center print:hidden">

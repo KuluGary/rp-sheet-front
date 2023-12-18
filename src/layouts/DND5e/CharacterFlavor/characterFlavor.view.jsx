@@ -1,4 +1,4 @@
-import backgroundImage from "@/assets/character-flavor.jpg";
+import backgroundImage from "@/assets/dnd5e/character-flavor.jpg";
 import Sheet from "@/components/Sheet/Sheet";
 import React from "react";
 import useCharacterFlavor from "./useCharacterFlavor";

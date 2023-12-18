@@ -1,4 +1,4 @@
-import backgroundImage from "@/assets/character-data.jpg";
+import backgroundImage from "@/assets/dnd5e/character-data.jpg";
 import Sheet from "@/components/Sheet/Sheet";
 import React from "react";
 import useCharacterData from "./useCharacterData";

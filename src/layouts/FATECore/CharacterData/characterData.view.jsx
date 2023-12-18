@@ -1,4 +1,4 @@
-import backgroundImage from "@/assets/fate-core-sheet.jpg";
+import backgroundImage from "@/assets/fate-core/character-data.jpg";
 import Sheet from "@/components/Sheet/Sheet";
 import React from "react";
 import useCharacterData from "./useCharacterData";

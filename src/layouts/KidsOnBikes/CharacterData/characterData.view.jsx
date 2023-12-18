@@ -1,5 +1,5 @@
+import backgroundImage from "@/assets/kids-on-bikes/character-data.jpg";
 import Sheet from "@/components/Sheet/Sheet";
-import backgroundImage from "@/assets/kids-on-bikes-character-sheet.jpg";
 import useCharacterData from "./useCharacterData";
 
 const CharacterData = ({

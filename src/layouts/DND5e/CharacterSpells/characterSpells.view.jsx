@@ -1,4 +1,4 @@
-import backgroundImage from "@/assets/character-spells.jpg";
+import backgroundImage from "@/assets/dnd5e/character-spells.jpg";
 import Sheet from "@/components/Sheet/Sheet";
 import React from "react";
 import useCharacterSpells from "./useCharacterSpells";

@@ -102,10 +102,10 @@ const DND5e = () => {
             return (
               <animated.div
                 key={key}
+                className="my-10 mx-auto print:my-0"
                 style={{
                   transform: y.to((y) => `translate3d(0,${y}px,0)`),
                   ...rest,
-                  margin: "10px auto",
                 }}
               >
                 <Component

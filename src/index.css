@@ -4,11 +4,11 @@
 
 @page a4 {
   size: a4 portrait;
-  margin: 0;
+  margin: 0mm;
 }
 
 @page letter {
-  size: 22.41cm 18.73cm;
+  size: 22.41cm 18.54cm;
   margin: 0;
 }
 

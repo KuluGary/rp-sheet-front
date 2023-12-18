@@ -17,7 +17,6 @@ const CharacterData = ({
   return (
     <Sheet
       background={backgroundImage}
-      disposition="vertical"
       pageIndex={pageIndex}
       handleChangePage={handleChangePage}
       handleDeletePage={handleDeletePage}

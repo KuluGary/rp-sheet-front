@@ -5,10 +5,7 @@ import classNames from "./Sheet.module.css";
 const Sheet = ({ children, background, disposition = "vertical", pageIndex, handleChangePage, handleDeletePage }) => {
   return (
     <div className={classNames.wrapper}>
-      <div
-        className={`${classNames.container} ${classNames[disposition]}`}
-        style={{ backgroundImage: `url(${background})`, backgroundRepeat: "no-repeat", backgroundPositionX: "center" }}
-      >
+      <div className={`${classNames.container} ${classNames[disposition]} m-[1px]`}>
         {children}
         <img src={background} className="w-auto h-full -z-10 mx-auto" />
       </div>

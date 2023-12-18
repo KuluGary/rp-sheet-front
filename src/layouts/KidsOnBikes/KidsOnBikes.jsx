@@ -31,7 +31,7 @@ function KidsOnBikes() {
     <div className={classNames.container}>
       <ErrorHandler>
         <NavBar data={pages} setData={setPages} type={"kids-on-bikes"} onAddFile={handleAddFile} />
-        <div id="page-container" className="flex justify-center mt-16 print:mt-0">
+        <div className="flex justify-center mt-16 print:mt-0">
           {transitions(({ y, ...rest }, page, { key }) => {
             const Component = components[page.type];
             const pageIndex = page.pageIndex;

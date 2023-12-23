@@ -17,7 +17,7 @@ function KidsOnBikes() {
     1: { id: uuidv4(), type: "data", data: {} },
   });
 
-  const transitions = useTransitions(pages);
+  const transitions = useTransitions(pages, 1120);
   const {
     handleAddFile,
     handleChangeTextInput,

@@ -1,9 +1,9 @@
+import { useTransition } from "@react-spring/web";
 import { v4 as uuidv4 } from "uuid";
-import { animated, useTransition } from "@react-spring/web";
 
-export const useTransitions = (pages) => {
+export const useTransitions = (pages, pageSize) => {
   return useTransition(
-    Object.keys(pages).map((key, i) => ({ ...pages[key], pageIndex: key, y: i * 1120 })),
+    Object.keys(pages).map((key, i) => ({ ...pages[key], pageIndex: key, y: i * pageSize })),
     {
       from: { position: "absolute", opacity: 0 },
       leave: { height: 0, opacity: 0 },

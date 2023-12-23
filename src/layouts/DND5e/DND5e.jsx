@@ -1,14 +1,16 @@
-import React, { useState } from "react";
-import { getNestedKey, setNestedKey, swapElements } from "@/utils/util";
 import ErrorHandler from "@/components/ErrorHandler/ErrorHandler";
 import NavBar from "@/components/NavBar/NavBar";
-import CharacterData from "./CharacterData/characterData.view";
-import CharacterFlavor from "./CharacterFlavor/characterFlavor.view";
-import CharacterFeatures from "./CharacterFeatures/characterFeatures.view";
-import CharacterSpells from "./CharacterSpells/characterSpells.view";
-import { useTransition, animated } from "@react-spring/web";
+import { getNestedKey, setNestedKey, swapElements } from "@/utils/util";
+import { animated } from "@react-spring/web";
+import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { useTransitions } from "../../hooks/useTransitions";
+import CharacterData from "./CharacterData/characterData.view";
+import CharacterFeatures from "./CharacterFeatures/characterFeatures.view";
+import CharacterFlavor from "./CharacterFlavor/characterFlavor.view";
+import CharacterSpells from "./CharacterSpells/characterSpells.view";
 import classNames from "./DND5e.module.css";
+import { useForm } from "../../hooks/useForm";
 
 const components = {
   data: CharacterData,
@@ -23,72 +25,11 @@ const DND5e = () => {
     2: { id: uuidv4(), type: "flavor", data: {} },
   });
 
-  const transitions = useTransition(
-    Object.keys(pages).map((key, i) => ({ ...pages[key], pageIndex: key, y: i * 1120 })),
-    {
-      from: { position: "absolute", opacity: 0 },
-      leave: { height: 0, opacity: 0 },
-      enter: ({ y }) => ({ y, opacity: 1 }),
-      update: ({ y }) => ({ y }),
-      key: (data) => `${data?.id ?? uuidv4()}`,
-    }
+  const transitions = useTransitions(pages, 1120);
+  const { handleAddFile, handleChangeTextInput, handleChangeCheckbox, handleChangePage, handleDeleteFile } = useForm(
+    pages,
+    setPages
   );
-
-  const handleChangeTextInput = (pageIndex, ev) => {
-    const { name, value } = ev.target;
-
-    const selectedPageData = { ...pages[pageIndex].data, ...setNestedKey(name, pages[pageIndex].data, value) };
-    const newPages = { ...pages };
-    newPages[pageIndex].data = selectedPageData;
-
-    setPages(newPages);
-  };
-
-  const handleChangeCheckbox = (pageIndex, ev) => {
-    const { name } = ev.target;
-
-    const prevValue = getNestedKey(name, pages[pageIndex].data);
-    const selectedPageData = { ...pages[pageIndex].data, ...setNestedKey(name, pages[pageIndex].data, !prevValue) };
-    const newPages = { ...pages };
-    newPages[pageIndex].data = selectedPageData;
-
-    setPages(newPages);
-  };
-
-  const handleChangePage = (currentIndex, ev) => {
-    const newPages = structuredClone(pages);
-    const newIndex = ev.target.valueAsNumber;
-
-    if (newIndex === 0) return;
-
-    if (typeof newPages[newIndex] === "object") {
-      swapElements(newPages, currentIndex, newIndex);
-    }
-
-    setPages(newPages);
-  };
-
-  const handleAddFile = (e) => {
-    const type = e.target.name;
-    const pageNumbers = Object.keys(pages).sort();
-    const latestIndex = parseInt(pageNumbers[pageNumbers.length - 1] ?? 0);
-
-    const newPages = { ...pages };
-    newPages[latestIndex + 1] = { id: uuidv4(), type, data: {} };
-
-    setPages(newPages);
-  };
-
-  const handleDeleteFile = (pageIndex) => {
-    let newPages = Object.values(structuredClone(pages));
-    newPages.splice(parseInt(pageIndex) - 1, 1);
-    newPages = newPages.reduce((result, item, index) => {
-      result[index + 1] = item;
-      return result;
-    }, {});
-
-    setPages(newPages);
-  };
 
   return (
     <div className={classNames.container}>

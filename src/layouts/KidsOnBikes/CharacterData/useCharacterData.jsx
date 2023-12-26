@@ -1,6 +1,6 @@
 import { useInputs } from "@/hooks/useInputs";
-import * as mappers from "./characterData.mapper";
 import { characterDataSchema } from "./characterData.schema";
+import { baseInputMapper } from "../../../utils/baseInputMapper";
 
 const useCharacterData = ({ page, handleChangeTextInput, handleChangeCheckbox, handleChangeContentEditable }) => {
   const sharedProps = { page, handleChangeCheckbox, handleChangeTextInput, handleChangeContentEditable };
@@ -8,7 +8,7 @@ const useCharacterData = ({ page, handleChangeTextInput, handleChangeCheckbox, h
   const inputs = useInputs({
     inputs: characterDataSchema,
     ...sharedProps,
-    mapper: mappers.baseInputMapper,
+    mapper: baseInputMapper,
   });
 
   return [...inputs];

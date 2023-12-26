@@ -7,8 +7,8 @@ import {
   characterSavingThrowsSchema,
   characterSkillsSchema,
 } from "./characterData.schema";
-import * as mappers from "./characterData.mapper";
 import { useInputs } from "@/hooks/useInputs";
+import { abilityScoreMapper, attacksMapper, baseInputMapper, coinsMapper, deathSavesMapper, skillSavingThrowMapper } from "../../../utils/baseInputMapper";
 
 const useCharacterData = ({ page, handleChangeTextInput, handleChangeCheckbox }) => {
   const sharedProps = { page, handleChangeCheckbox, handleChangeTextInput };
@@ -16,32 +16,32 @@ const useCharacterData = ({ page, handleChangeTextInput, handleChangeCheckbox })
   const inputs = useInputs({
     inputs: characterDataSchema,
     ...sharedProps,
-    mapper: mappers.baseInputMapper,
+    mapper: baseInputMapper,
   });
 
   const abilityScoreInputs = useInputs({
     ...sharedProps,
-    mapper: mappers.abilityScoreMapper,
+    mapper: abilityScoreMapper,
     ...characterAbilityScoresSchema,
   });
 
   const savingThrows = useInputs({
     ...sharedProps,
-    mapper: mappers.skillSavingThrowMapper,
+    mapper: skillSavingThrowMapper,
     type: "savingThrows",
     ...characterSavingThrowsSchema,
   });
 
   const skills = useInputs({
     ...sharedProps,
-    mapper: mappers.skillSavingThrowMapper,
+    mapper: skillSavingThrowMapper,
     type: "skills",
     ...characterSkillsSchema,
   });
 
   const deathSavesSuccess = useInputs({
     ...sharedProps,
-    mapper: mappers.deathSavesMapper,
+    mapper: deathSavesMapper,
     type: "succeeded",
     inputs: 3,
     ...characterDeathSavesSchema.succeeded,
@@ -49,7 +49,7 @@ const useCharacterData = ({ page, handleChangeTextInput, handleChangeCheckbox })
 
   const deathSavesFails = useInputs({
     ...sharedProps,
-    mapper: mappers.deathSavesMapper,
+    mapper: deathSavesMapper,
     type: "failed",
     inputs: 3,
     ...characterDeathSavesSchema.failed,
@@ -57,14 +57,14 @@ const useCharacterData = ({ page, handleChangeTextInput, handleChangeCheckbox })
 
   const attacks = useInputs({
     ...sharedProps,
-    mapper: mappers.attacksMapper,
+    mapper: attacksMapper,
     inputs: 3,
     ...characterAttackSchema,
   });
 
   const coins = useInputs({
     ...sharedProps,
-    mapper: mappers.coinsMapper,
+    mapper: coinsMapper,
     ...characterCoinSchema,
   });
 

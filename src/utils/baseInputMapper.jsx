@@ -3,9 +3,14 @@ import Checkbox from "@/components/Checkbox/Checkbox";
 
 export const baseInputMapper = (
   [name = "", data = ""],
-  { page = 1, handleChangeTextInput = () => {}, handleChangeCheckbox = () => {} }
+  {
+    page = 1,
+    handleChangeTextInput = () => {},
+    handleChangeCheckbox = () => {},
+    handleChangeContentEditable = () => {},
+  }
 ) => {
-  const { type, position, placeholder = "", className } = data;
+  const { type, position, size, placeholder = "", className } = data;
 
   if (type === "textarea")
     return (
@@ -15,22 +20,60 @@ export const baseInputMapper = (
         placeholder={placeholder}
         value={getNestedKey(name, page) ?? ""}
         onChange={handleChangeTextInput}
-        className={`absolute top-[${position.y}px] left-[${position.x}px] ${className}`}
-        style={{ top: position.y, left: position.x }}
+        className={`absolute ${className}`}
+        style={{
+          top: `${position.y}%`,
+          left: `${position.x}%`,
+          width: `${size.width}%`,
+          height: `${size.height}%`,
+        }}
       />
     );
 
-  if (type === "checkbox")
+  if (type === "checkbox") {
     return (
       <Checkbox
         name={name}
         key={name}
         checked={getNestedKey(name, page)}
         onClick={handleChangeCheckbox}
-        className={`absolute top-[${position.y}px] left-[${position.x}px] ${className}`}
-        style={{ top: position.y, left: position.x }}
+        style={{
+          top: `${position.y}%`,
+          left: `${position.x}%`,
+          width: `${size.width}%`,
+        }}
       />
     );
+  }
+  if (type === "contenteditable") {
+    return (
+      <div
+        key={name}
+        className={`${className} w-fit h-fit`}
+        style={{
+          top: `${position.y}%`,
+          left: `${position.x}%`,
+          width: `${size.width}%`,
+          height: `${size.height}%`,
+        }}
+      >
+        <div
+          className={`${data.block.className}`}
+          style={{
+            width: `${data.block.size.width}%`,
+            height: `${data.block.size.height}%`,
+          }}
+        />
+        <div
+          contentEditable
+          className={`${data.textarea.className} whitespace-pre-line`}
+          onBlur={(e) => handleChangeContentEditable(name, e.currentTarget.outerText)}
+          dangerouslySetInnerHTML={{ __html: getNestedKey(name, page) }}
+          suppressContentEditableWarning={true}
+        />
+      </div>
+    );
+  }
 
   return (
     <input
@@ -39,8 +82,13 @@ export const baseInputMapper = (
       placeholder={placeholder}
       value={getNestedKey(name, page) ?? ""}
       onChange={handleChangeTextInput}
-      className={`absolute top-[${position.y}px] left-[${position.x}px] ${className}`}
-      style={{ top: position.y, left: position.x }}
+      className={`absolute ${className} overflow-hidden text-ellipsis`}
+      style={{
+        top: `${position.y}%`,
+        left: `${position.x}%`,
+        width: `${size.width}%`,
+        height: `${size.height}%`,
+      }}
     />
   );
 };
@@ -93,8 +141,7 @@ export const skillSavingThrowMapper = (element, props) => {
         name={`${type}.${element}.checked`}
         checked={page?.[type]?.[element]?.checked}
         onClick={handleChangeCheckbox}
-        className="absolute left-[124px] w-2 aspect-square"
-        style={{ top: positionCheck }}
+        style={{ top: positionCheck, left: 123, width: 10 }}
       />
       <input
         type="text"
@@ -117,8 +164,7 @@ export const deathSavesMapper = (props) => {
       name={`deathsaves.${type}.${i}`}
       checked={page?.deathsaves?.[type]?.[i]}
       onClick={handleChangeCheckbox}
-      className="absolute w-2 aspect-square"
-      style={{ top: startsAt.y, left: startsAt.x + distanceMultiplier * i }}
+      style={{ top: startsAt.y, left: startsAt.x + distanceMultiplier * i, width: 12 }}
     />
   );
 };
@@ -170,5 +216,48 @@ export const coinsMapper = (coin, props) => {
       className="absolute left-[296px] w-8 text-sm text-center"
       style={{ top: startsAt + distanceMultiplier * i }}
     />
+  );
+};
+
+export const skillMapper = ([type, skillData], props) => {
+  const { startsAt } = skillData;
+  const { page, handleChangeTextInput } = props;
+
+  return (
+    <section id={type}>
+      {Array.apply(null, Array(5)).map((_, index) => (
+        <input
+          name={`skills.${type}.${index}`}
+          key={`skills.${type}.${index}`}
+          value={page?.skills?.[type]?.[index]}
+          onChange={handleChangeTextInput}
+          className="absolute h-[14px] w-[70px] text-sm"
+          style={{ left: startsAt.x + 82 * index, top: startsAt.y }}
+        />
+      ))}
+    </section>
+  );
+};
+
+export const stressMapper = ([type, stressData], props) => {
+  const { startsAt, distanceOffset, size, className } = stressData;
+  const { page, handleChangeCheckbox } = props;
+
+  return (
+    <section id={type}>
+      {Array.apply(null, Array(size)).map((_, index) => (
+        <Checkbox
+          key={index}
+          name={`${type}.${index}`}
+          checked={page?.[type]?.[index]}
+          onClick={handleChangeCheckbox}
+          className={`${className} opacity-0 outline-none accent-white checked:opacity-100`}
+          style={{
+            top: startsAt.y,
+            left: startsAt.x + distanceOffset * index,
+          }}
+        />
+      ))}
+    </section>
   );
 };

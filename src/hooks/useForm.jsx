@@ -1,4 +1,5 @@
 import { getNestedKey, setNestedKey, swapElements } from "@/utils/util";
+import { v4 as uuidv4 } from "uuid";
 
 export const useForm = (pages, setPages) => {
   const handleChangeTextInput = (pageIndex, ev) => {
@@ -16,7 +17,7 @@ export const useForm = (pages, setPages) => {
 
     const prevValue = getNestedKey(name, pages[pageIndex].data);
     const selectedPageData = { ...pages[pageIndex].data, ...setNestedKey(name, pages[pageIndex].data, !prevValue) };
-    const newPages = { ...pages };
+    const newPages = structuredClone({ ...pages });
     newPages[pageIndex].data = selectedPageData;
 
     setPages(newPages);

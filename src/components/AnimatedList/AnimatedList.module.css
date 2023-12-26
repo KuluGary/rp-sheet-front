@@ -1,0 +1,37 @@
+.print-row {
+  page-break-before: auto;
+  page-break-after: auto;
+  page-break-inside: avoid;
+}
+
+.print-row-vertical {
+  page: a4;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.print-row-horizontal {
+  page: letter;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.print-item {
+  break-inside: avoid;
+}
+
+.print-item:after {
+  position: absolute;
+  display: block;
+  min-width: 100%;
+  width: 100%;
+  content: "";
+}
+
+.print-item:before {
+  position: absolute;
+  display: block;
+  min-width: 100%;
+  width: 100%;
+  content: "";
+}

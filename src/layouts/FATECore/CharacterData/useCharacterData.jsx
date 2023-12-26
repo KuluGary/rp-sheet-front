@@ -1,6 +1,6 @@
 import { useInputs } from "@/hooks/useInputs";
 import { characterDataSchema, characterSkillsSchema, characterStressSchema } from "./characterData.schema";
-import * as mappers from "./characterData.mapper";
+import { baseInputMapper, skillMapper, stressMapper } from "../../../utils/baseInputMapper";
 
 const useFateCore = ({ page, handleChangeTextInput, handleChangeCheckbox }) => {
   const sharedProps = { page, handleChangeCheckbox, handleChangeTextInput };
@@ -8,19 +8,19 @@ const useFateCore = ({ page, handleChangeTextInput, handleChangeCheckbox }) => {
   const inputs = useInputs({
     inputs: characterDataSchema,
     ...sharedProps,
-    mapper: mappers.baseInputMapper,
+    mapper: baseInputMapper,
   });
 
   const skills = useInputs({
     inputs: characterSkillsSchema,
     ...sharedProps,
-    mapper: mappers.skillMapper,
+    mapper: skillMapper,
   });
 
   const stress = useInputs({
     inputs: characterStressSchema,
     ...sharedProps,
-    mapper: mappers.stressMapper,
+    mapper: stressMapper,
   });
 
   return [...inputs, ...skills, ...stress];

@@ -6,11 +6,11 @@ const Sheet = ({ children, background, disposition = "vertical", pageIndex, hand
   return (
     <div className={classNames.wrapper}>
       <div
-        className={`${classNames.container} ${classNames[disposition]} m-[1px]`}
+        className={`${classNames.container} ${classNames[disposition]}`}
         style={{ backgroundImage: `url(${background})`, backgroundRepeat: "no-repeat", backgroundPositionX: "center" }}
       >
         {children}
-        <img src={background} className="w-auto h-full -z-10 mx-auto screen:hidden" />
+        <img src={background} className="w-auto h-auto -z-10 mx-auto screen:hidden" />
       </div>
       {pageIndex && (
         <div className="absolute bottom-2 w-full text-center print:hidden">

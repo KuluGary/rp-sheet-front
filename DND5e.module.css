@@ -1,6 +1,0 @@
-.test {
-  @page {
-    size: a4; /* auto is the initial value */
-    margin: 10mm; /* this affects the margin in the printer settings */
-  }
-}

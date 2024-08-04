@@ -1,8 +1,8 @@
-import ErrorHandler from "@/components/ErrorHandler/ErrorHandler";
 import { Link } from "react-router-dom";
+import classNames from "./App.module.css";
+import ErrorHandler from "./components/ErrorHandler/ErrorHandler";
 import File from "./components/Icons/File";
 import Sheet from "./components/Sheet/Sheet";
-import classNames from "./App.module.css";
 
 export default function App() {
   return (
@@ -27,6 +27,12 @@ export default function App() {
                 <File size={28} color={"black"} />
                 <Link to={`/kids-on-bikes`} className="hover:underline">
                   Kids On Bikes
+                </Link>
+              </div>
+              <div className="flex gap-2 border-b border-b-neutral-200 my-2 py-4 pr-64 w-full">
+                <File size={28} color={"black"} />
+                <Link to={`/ironsworn`} className="hover:underline">
+                  Ironsworn
                 </Link>
               </div>
               <div className="flex gap-2 border-b border-b-neutral-200 my-2 py-4 pr-64 w-full">

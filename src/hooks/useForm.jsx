@@ -23,6 +23,24 @@ export const useForm = (pages, setPages) => {
     setPages(newPages);
   };
 
+  const handleChangeMultiCheckbox = (pageIndex, name, value) => {
+    const selectedPageData = { ...pages[pageIndex].data, ...setNestedKey(name, pages[pageIndex].data, value) };
+
+    const newPages = structuredClone(pages);
+    newPages[pageIndex].data = selectedPageData;
+
+    setPages(newPages);
+  };
+  
+  const handleChangeRadioGroup = (pageIndex, name, value) => {
+    const selectedPageData = { ...pages[pageIndex].data, ...setNestedKey(name, pages[pageIndex].data, value) };
+    
+    const newPages = structuredClone(pages);
+    newPages[pageIndex].data = selectedPageData;
+
+    setPages(newPages);
+  };
+
   const handleChangeContentEditable = (pageIndex, name, value) => {
     const selectedPageData = { ...pages[pageIndex].data, ...setNestedKey(name, pages[pageIndex].data, value) };
     const newPages = structuredClone(pages);
@@ -69,6 +87,8 @@ export const useForm = (pages, setPages) => {
   return {
     handleAddFile,
     handleChangeCheckbox,
+    handleChangeMultiCheckbox,
+    handleChangeRadioGroup,
     handleChangePage,
     handleChangeTextInput,
     handleDeleteFile,

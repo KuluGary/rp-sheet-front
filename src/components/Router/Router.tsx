@@ -1,10 +1,10 @@
-import React from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "@/App";
-import DND5e from "@/layouts/DND5e/DND5e";
 import NavigationError from "@/components/NavigationError/NavigationError";
+import DND5e from "@/layouts/DND5e/DND5e";
 import FATECore from "@/layouts/FATECore/FATECore";
 import Help from "@/layouts/Help/Help";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Ironsworn from "../../layouts/Ironsworn/Ironsworn";
 import KidsOnBikes from "../../layouts/KidsOnBikes/KidsOnBikes";
 
 const router = createBrowserRouter([
@@ -26,6 +26,11 @@ const router = createBrowserRouter([
   {
     path: "/kids-on-bikes",
     element: <KidsOnBikes />,
+    errorElement: <NavigationError />,
+  },
+  {
+    path: "/ironsworn",
+    element: <Ironsworn />,
     errorElement: <NavigationError />,
   },
   {

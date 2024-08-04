@@ -1,6 +1,11 @@
 import React from "react";
 
-const File = ({ size = 38, color = "#2c3e50" }) => {
+type Props = {
+  size?: number;
+  color?: string;
+};
+
+const File = ({ size = 38, color = "#2c3e50" }: Props) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

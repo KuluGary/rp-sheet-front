@@ -1,13 +1,20 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 
-export default class ErrorHandler extends React.Component {
-  constructor(props) {
+type Props = PropsWithChildren<{}>;
+
+type State = {
+  error: any;
+  stacktrace: any;
+};
+
+export default class ErrorHandler extends React.Component<Props, State> {
+  constructor(props: PropsWithChildren) {
     super(props);
   }
 
-  state = {};
+  state: any = {};
 
-  componentDidCatch(error, stacktrace) {
+  componentDidCatch(error: any, stacktrace: any) {
     this.setState({
       error,
       stacktrace,
@@ -28,7 +35,12 @@ export default class ErrorHandler extends React.Component {
               Si estás viendo esta pantalla, es que ha habido algún fallo en la aplicación. Por favor, comparte el
               mensaje de error a continuación con el administrador
             </p>
-            <button className="bg-blue-600 px-2 py-1 text-white font-bold rounded-md hover:bg-blue-800 block mx-auto" onClick={this.refreshPage}>Volver al inicio</button>
+            <button
+              className="bg-blue-600 px-2 py-1 text-white font-bold rounded-md hover:bg-blue-800 block mx-auto"
+              onClick={this.refreshPage}
+            >
+              Volver al inicio
+            </button>
             <pre className="w-3/4 overflow-auto mx-auto">
               <code>{this.state.stacktrace.componentStack}</code>
             </pre>

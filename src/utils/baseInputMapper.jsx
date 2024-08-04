@@ -1,5 +1,7 @@
 import { getNestedKey } from "@/utils/util";
 import Checkbox from "@/components/Checkbox/Checkbox";
+import Multicheckbox from "@/components/MultiCheckbox/Multicheckbox";
+import RadioGroup from "@/components/RadioGroup/RadioGroup";
 
 export const baseInputMapper = (
   [name = "", data = ""],
@@ -7,10 +9,12 @@ export const baseInputMapper = (
     page = 1,
     handleChangeTextInput = () => {},
     handleChangeCheckbox = () => {},
+    handleChangeMultiCheckbox = () => {},
+    handleChangeRadioGroup = () => {},
     handleChangeContentEditable = () => {},
   }
 ) => {
-  const { type, position, size, placeholder = "", className } = data;
+  const { type, appearance, position, size, placeholder = "", className } = data;
 
   if (type === "textarea")
     return (
@@ -37,10 +41,46 @@ export const baseInputMapper = (
         key={name}
         checked={getNestedKey(name, page)}
         onClick={handleChangeCheckbox}
+        appearance={appearance}
         style={{
           top: `${position.y}%`,
           left: `${position.x}%`,
           width: `${size.width}%`,
+          height: size.height && `${size.height}%`,
+        }}
+      />
+    );
+  }
+  if (type === "multicheckbox") {
+    return (
+      <Multicheckbox
+        name={name}
+        key={name}
+        value={getNestedKey(name, page)}
+        onClick={handleChangeMultiCheckbox}
+        style={{
+          top: `${position.y}%`,
+          left: `${position.x}%`,
+          width: `${size.width}%`,
+        }}
+      />
+    );
+  }
+  if (type === "radiogroup") {
+    return (
+      <RadioGroup
+        name={name}
+        key={name}
+        value={getNestedKey(name, page)}
+        onClick={handleChangeRadioGroup}
+        className={className}
+        amount={data.amount}
+        appearance={appearance}
+        style={{
+          top: `${position.y}%`,
+          left: `${position.x}%`,
+          width: `${size.width}%`,
+          height: size.height && `${size.height}%`,
         }}
       />
     );

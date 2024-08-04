@@ -1,8 +1,6 @@
-import React from "react";
-
 const Cancel = ({ size = 38, color = "#2c3e50" }) => {
   return (
-    <span alt="Cancelar" title="Cancelar">
+    <span title="Cancelar">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="icon icon-tabler icon-tabler-file inline"

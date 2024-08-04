@@ -1,0 +1,7 @@
+.multicheckbox {
+  position: absolute;
+  aspect-ratio: 1;
+  display: grid;
+  place-content: center;
+  place-items: center;
+}

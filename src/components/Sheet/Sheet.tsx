@@ -1,8 +1,23 @@
-import Cancel from "@/components/Icons/Cancel";
-import React from "react";
+import { PropsWithChildren } from "react";
 import classNames from "./Sheet.module.css";
+import Cancel from "../Icons/Cancel";
 
-const Sheet = ({ children, background, disposition = "vertical", pageIndex, handleChangePage, handleDeletePage }) => {
+type Props = PropsWithChildren<{
+  background?: string;
+  disposition?: "vertical" | "horizontal";
+  pageIndex?: number;
+  handleChangePage?: () => void;
+  handleDeletePage?: () => void;
+}>;
+
+const Sheet = ({
+  children,
+  background,
+  disposition = "vertical",
+  pageIndex,
+  handleChangePage,
+  handleDeletePage,
+}: Props) => {
   return (
     <div className={classNames.wrapper}>
       <div

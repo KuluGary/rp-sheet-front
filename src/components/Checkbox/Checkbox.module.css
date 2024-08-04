@@ -16,3 +16,10 @@
 .checkbox:checked {
   background-color: black;
 }
+
+.checkbox-ironsword {
+  position: absolute;
+  aspect-ratio: 1;
+  display: grid;
+  place-content: center;
+}

@@ -11,7 +11,7 @@ const components = {
   data: CharacterData,
 };
 
-function KidsOnBikes() {
+function Ironsworn() {
   const [pages, setPages] = useState({
     1: { id: uuidv4(), type: "data", data: {} },
   });
@@ -21,7 +21,7 @@ function KidsOnBikes() {
 
   return (
     <ErrorHandler>
-      <NavBar data={pages} setData={setPages} type={"kids-on-bikes"} onAddFile={formActions.handleAddFile} />
+      <NavBar data={pages} setData={setPages} type={"ironsworn"} onAddFile={formActions.handleAddFile} />
       <AnimatedList
         direction="vertical"
         components={components}
@@ -34,4 +34,4 @@ function KidsOnBikes() {
   );
 }
 
-export default KidsOnBikes;
+export default Ironsworn;

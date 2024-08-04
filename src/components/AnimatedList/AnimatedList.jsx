@@ -6,6 +6,8 @@ const AnimatedList = ({ transitions, components, pages, setPages, formActions, d
   const {
     handleChangeTextInput,
     handleChangeCheckbox,
+    handleChangeMultiCheckbox,
+    handleChangeRadioGroup,
     handleChangePage,
     handleDeleteFile,
     handleChangeContentEditable,
@@ -30,6 +32,8 @@ const AnimatedList = ({ transitions, components, pages, setPages, formActions, d
                 pageIndex={pageIndex}
                 handleChangeTextInput={(ev) => handleChangeTextInput(pageIndex, ev)}
                 handleChangeCheckbox={(ev) => handleChangeCheckbox(pageIndex, ev)}
+                handleChangeMultiCheckbox={(name, value) => handleChangeMultiCheckbox(pageIndex, name, value)}
+                handleChangeRadioGroup={(name, value) => handleChangeRadioGroup(pageIndex, name, value)}
                 handleChangePage={(ev) => handleChangePage(pageIndex, ev)}
                 handleChangeContentEditable={(name, value) => handleChangeContentEditable(pageIndex, name, value)}
                 handleDeletePage={() => handleDeleteFile(pageIndex)}
@@ -58,6 +62,8 @@ const AnimatedList = ({ transitions, components, pages, setPages, formActions, d
                 pageIndex={pageIndex}
                 handleChangeTextInput={(ev) => handleChangeTextInput(pageIndex, ev)}
                 handleChangeCheckbox={(ev) => handleChangeCheckbox(pageIndex, ev)}
+                handleChangeMultiCheckbox={(name, value) => handleChangeMultiCheckbox(pageIndex, name, value)}
+                handleChangeRadioGroup={(name, value) => handleChangeRadioGroup(pageIndex, name, value)}
                 handleChangePage={(ev) => handleChangePage(pageIndex, ev)}
                 handleDeletePage={() => handleDeleteFile(pageIndex)}
               />

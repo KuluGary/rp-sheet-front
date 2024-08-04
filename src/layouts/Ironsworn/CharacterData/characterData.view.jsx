@@ -1,17 +1,27 @@
-import backgroundImage from "@/assets/dnd5e/character-data.jpg";
-import Sheet from "@/components/Sheet/Sheet";
+import backgroundImage from "@/assets/ironsworn/character-data.jpg";
+import Sheet from "../../../components/Sheet/Sheet";
 import useCharacterData from "./useCharacterData";
 
 const CharacterData = ({
   pages,
   pageIndex,
   handleChangeCheckbox,
+  handleChangeMultiCheckbox,
+  handleChangeRadioGroup,
   handleChangeTextInput,
   handleChangePage,
   handleDeletePage,
+  handleChangeContentEditable,
 }) => {
   const page = pages[pageIndex]?.data;
-  const data = useCharacterData({ page, handleChangeCheckbox, handleChangeTextInput });
+  const data = useCharacterData({
+    page,
+    handleChangeCheckbox,
+    handleChangeMultiCheckbox,
+    handleChangeRadioGroup,
+    handleChangeTextInput,
+    handleChangeContentEditable,
+  });
 
   return (
     <Sheet

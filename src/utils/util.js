@@ -16,7 +16,7 @@ export const setNestedKey = (key, element, value) => {
   return element;
 };
 
-export const getNestedKey = (string, element) => string.split(".").reduce((p, c) => (p && p[c]) || null, element);
+export const getNestedKey = (string, element) => string.split(".").reduce((p, c) => (p && p[c]) ?? null, element);
 
 export const swapElements = (array, index1, index2) => {
   let temp = array[index1];

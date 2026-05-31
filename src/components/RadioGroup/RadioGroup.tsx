@@ -5,7 +5,7 @@ type Props = {
   onClick: (name: string, value: number) => void;
   className: Record<string, string>;
   appearance?: string;
-} & React.HTMLAttributes<HTMLButtonElement>;
+} & Omit<React.HTMLAttributes<HTMLButtonElement>, "onClick">;
 
 const RadioGroup = (props: Props) => {
   switch (props.appearance) {

@@ -1,6 +1,7 @@
 import backgroundImage from "@/assets/dnd5e/character-data.jpg";
 import Sheet from "@/components/Sheet/Sheet";
 import useCharacterData from "./useCharacterData";
+import { FormActionsType, PageListType } from "@/types/types";
 
 const CharacterData = ({
   pages,
@@ -9,9 +10,16 @@ const CharacterData = ({
   handleChangeTextInput,
   handleChangePage,
   handleDeletePage,
+}: {
+  pages: PageListType;
+  pageIndex: number;
+  handleChangeCheckbox: (ev: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChangeTextInput: (ev: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChangePage: FormActionsType["handleChangePage"];
+  handleDeletePage: FormActionsType["handleDeleteFile"];
 }) => {
   const page = pages[pageIndex]?.data;
-  const data = useCharacterData({ page, handleChangeCheckbox, handleChangeTextInput });
+  const data = useCharacterData({ page, pageIndex, handleChangeCheckbox, handleChangeTextInput });
 
   return (
     <Sheet

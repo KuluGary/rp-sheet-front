@@ -1,6 +1,8 @@
+import { SchemaListType, SchemaType } from "@/types/types";
+
 const stats = ["strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"];
 
-export const characterDataSchema = {
+export const characterDataSchema: SchemaType = {
   name: {
     type: "input",
     position: { y: 5.5, x: 7 },
@@ -167,21 +169,22 @@ export const characterDataSchema = {
   },
 };
 
-export const characterAbilityScoresSchema = {
+export const characterAbilityScoresSchema: SchemaListType = {
   distanceMultiplier: 96,
   startsAt: 230,
   secondaryElementOffset: -40,
   inputs: stats,
+  className: "border border-red-500",
 };
 
-export const characterSavingThrowsSchema = {
+export const characterSavingThrowsSchema: SchemaListType = {
   distanceMultiplier: 18,
   startsAt: 251.5,
   secondaryElementOffset: -6,
   inputs: stats,
 };
 
-export const characterSkillsSchema = {
+export const characterSkillsSchema: SchemaListType = {
   distanceMultiplier: 18.1,
   startsAt: 406,
   secondaryElementOffset: -7,
@@ -218,7 +221,7 @@ export const characterDeathSavesSchema = {
   },
 };
 
-export const characterAttackSchema = {
+export const characterAttackSchema: SchemaListType = {
   startsAt: { y: 507, x: 289 },
   distanceMultiplier: 26,
 };

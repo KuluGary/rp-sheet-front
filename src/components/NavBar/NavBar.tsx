@@ -6,14 +6,22 @@ import FileUpload from "@/components/Icons/FileUpload";
 import Info from "@/components/Icons/Info";
 import Pdf from "@/components/Icons/Pdf";
 import Spinner from "@/components/Icons/Spinner";
-import React, { useEffect, useRef, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import UnsavedHandler from "../UnsavedHandler/UnsavedHandler";
+import { PageListType } from "@/types/types";
 
-const NavBar = ({ data, setData, type, onAddFile }) => {
+type Props = {
+  data: PageListType;
+  setData?: Dispatch<SetStateAction<PageListType>>;
+  type: "dnd5e" | "fate-core";
+  onAddFile: Function;
+};
+
+const NavBar = ({ data, setData, type, onAddFile }: Props) => {
   const navigate = useNavigate();
-  const inputFile = useRef(null);
-  const [loading, setLoading] = useState(false);
+  const inputFile = useRef<HTMLInputElement>(null);
+  const [loading] = useState(false);
   const [show, setShow] = useState(false);
   const [isTop, setIsTop] = useState(true);
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
@@ -27,12 +35,15 @@ const NavBar = ({ data, setData, type, onAddFile }) => {
       }
     };
 
-    return () => (window.onscroll = null);
-  });
+    return () => {
+      window.onscroll = null;
+    };
+  }, []);
 
   const handleDownloadJson = () => {
-    const fileName = `${data?.["1"]?.data?.name ?? data?.name}.${type}.json`;
-    const file = new Blob([JSON.stringify(data)], { type: "application/json", name: fileName });
+    const fileName = `${data?.["1"]?.data?.name}.${type}.json`;
+
+    const file = new Blob([JSON.stringify(data)], { type: "application/json" });
     const a = document.createElement("a");
     a.href = URL.createObjectURL(file);
     a.download = fileName;
@@ -44,20 +55,22 @@ const NavBar = ({ data, setData, type, onAddFile }) => {
     window.print();
   };
 
-  const handleUpload = (event) => {
+  const handleUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.stopPropagation();
     event.preventDefault();
 
     const reader = new FileReader();
+
     reader.onload = (event) => {
-      const newPages = JSON.parse(event.target.result);
-      setData(newPages);
+      const newPages = JSON.parse(event.target?.result as string);
+      setData?.(newPages);
       setShow(false);
     };
-    reader.readAsText(event.target.files[0]);
+
+    if (event.target?.files) reader.readAsText(event.target?.files?.[0]);
   };
 
-  const handleAddFile = (event) => {
+  const handleAddFile = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     onAddFile(event);
     setShow(false);
   };

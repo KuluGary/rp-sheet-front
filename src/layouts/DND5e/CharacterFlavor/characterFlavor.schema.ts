@@ -1,4 +1,6 @@
-export const characterFlavorSchema = {
+import { SchemaType } from "@/types/types";
+
+export const characterFlavorSchema: SchemaType = {
   name: {
     type: "input",
     position: { y: 60, x: 48 },

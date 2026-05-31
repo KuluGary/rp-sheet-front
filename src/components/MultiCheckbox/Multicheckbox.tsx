@@ -4,7 +4,7 @@ type Props = {
   name: string;
   value: number;
   onClick: (n: string, v: number) => void;
-} & React.HTMLAttributes<HTMLButtonElement>;
+} & Omit<React.HTMLAttributes<HTMLButtonElement>, "onClick">;
 
 const Multicheckbox = (props: Props) => {
   return (

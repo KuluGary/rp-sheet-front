@@ -1,4 +1,6 @@
-export const characterDataSchema = {
+import { SchemaListType, SchemaType } from "@/types/types";
+
+export const characterDataSchema: SchemaType = {
   name: {
     position: { y: 9.6, x: 2 },
     size: { height: 3, width: 57.5 },
@@ -87,7 +89,7 @@ export const characterDataSchema = {
   },
 };
 
-export const characterSkillsSchema = {
+export const characterSkillsSchema: Record<string, SchemaListType> = {
   superb: {
     startsAt: { x: 434, y: 175 },
   },
@@ -105,7 +107,7 @@ export const characterSkillsSchema = {
   },
 };
 
-export const characterStressSchema = {
+export const characterStressSchema: Record<string, SchemaListType> = {
   mentalstress: {
     startsAt: { y: 531, x: 26 },
     distanceOffset: 48,

@@ -1,8 +1,33 @@
-import React from "react";
 import { animated } from "@react-spring/web";
 import classNames from "./AnimatedList.module.css";
+import { useTransitions } from "@/hooks/useTransitions";
+import { Dispatch, ElementType, FC, ReactElement, SetStateAction } from "react";
+import { FormActionsType, PageListType } from "@/types/types";
 
-const AnimatedList = ({ transitions, components, pages, setPages, formActions, direction }) => {
+type ComponentProps = {
+  pages: PageListType;
+  setPages: Dispatch<SetStateAction<PageListType>>;
+  pageIndex: number;
+  
+  handleChangePage: (ev: React.ChangeEvent<HTMLInputElement>) => void;
+  handleDeletePage: () => void;
+  handleChangeTextInput?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  handleChangeCheckbox?: (ev: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChangeMultiCheckbox?: (name: string, value: number) => void;
+  handleChangeContentEditable?: (name: string, value: string) => void;
+  handleChangeRadioGroup?: (name: string, value: number) => void;
+};
+
+type Props = {
+  transitions: ReturnType<typeof useTransitions>;
+  components: Record<string, FC<ComponentProps>>;
+  pages: PageListType;
+  setPages: Dispatch<SetStateAction<PageListType>>;
+  formActions: FormActionsType;
+  direction: string;
+};
+
+const AnimatedList = ({ transitions, components, pages, setPages, formActions, direction }: Props) => {
   const {
     handleChangeTextInput,
     handleChangeCheckbox,
@@ -20,9 +45,9 @@ const AnimatedList = ({ transitions, components, pages, setPages, formActions, d
           classNames[`print-row-${direction}`]
         }`}
       >
-        {Object.entries(pages).map(([key, page]) => {
+        {/* {Object.entries(pages).map(([key, page]) => {
           const Component = components[page.type];
-          const pageIndex = key;
+          const pageIndex = parseInt(key);
 
           return (
             <div key={key} className={`${classNames["print-item"]}`}>
@@ -34,25 +59,25 @@ const AnimatedList = ({ transitions, components, pages, setPages, formActions, d
                 handleChangeCheckbox={(ev) => handleChangeCheckbox(pageIndex, ev)}
                 handleChangeMultiCheckbox={(name, value) => handleChangeMultiCheckbox(pageIndex, name, value)}
                 handleChangeRadioGroup={(name, value) => handleChangeRadioGroup(pageIndex, name, value)}
-                handleChangePage={(ev) => handleChangePage(pageIndex, ev)}
                 handleChangeContentEditable={(name, value) => handleChangeContentEditable(pageIndex, name, value)}
+                handleChangePage={(ev) => handleChangePage(pageIndex, ev)}
                 handleDeletePage={() => handleDeleteFile(pageIndex)}
               />
             </div>
           );
-        })}
+        })} */}
       </div>
       <div className="flex justify-center mt-16 print:mt-0 print:hidden">
-        {transitions(({ y, ...rest }, page, { key }) => {
+        {transitions(({ position, ...rest }, page, { key }) => {
           const Component = components[page.type];
-          const pageIndex = page.pageIndex;
+          const pageIndex = parseInt(page.pageIndex);
 
           return (
             <animated.div
               key={key}
               className="my-10 mx-auto print:my-0"
               style={{
-                transform: y.to((y) => `translate3d(0,${y}px,0)`),
+                transform: position.to((y) => `translate3d(0,${y}px,0)`),
                 ...rest,
               }}
             >
@@ -64,6 +89,7 @@ const AnimatedList = ({ transitions, components, pages, setPages, formActions, d
                 handleChangeCheckbox={(ev) => handleChangeCheckbox(pageIndex, ev)}
                 handleChangeMultiCheckbox={(name, value) => handleChangeMultiCheckbox(pageIndex, name, value)}
                 handleChangeRadioGroup={(name, value) => handleChangeRadioGroup(pageIndex, name, value)}
+                handleChangeContentEditable={(name, value) => handleChangeContentEditable(pageIndex, name, value)}
                 handleChangePage={(ev) => handleChangePage(pageIndex, ev)}
                 handleDeletePage={() => handleDeleteFile(pageIndex)}
               />

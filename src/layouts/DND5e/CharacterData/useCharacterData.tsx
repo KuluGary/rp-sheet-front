@@ -8,21 +8,40 @@ import {
   characterSkillsSchema,
 } from "./characterData.schema";
 import { useInputs } from "@/hooks/useInputs";
-import { abilityScoreMapper, attacksMapper, baseInputMapper, coinsMapper, deathSavesMapper, skillSavingThrowMapper } from "../../../utils/baseInputMapper";
+import {
+  abilityScoreMapper,
+  attacksMapper,
+  baseInputMapper,
+  coinsMapper,
+  deathSavesMapper,
+  skillSavingThrowMapper,
+} from "../../../utils/baseInputMapper";
+import { FormActionsType, PageType } from "@/types/types";
 
-const useCharacterData = ({ page, handleChangeTextInput, handleChangeCheckbox }) => {
-  const sharedProps = { page, handleChangeCheckbox, handleChangeTextInput };
+const useCharacterData = ({
+  page,
+  pageIndex,
+  handleChangeTextInput,
+  handleChangeCheckbox,
+}: {
+  page: PageType["data"];
+  pageIndex: number;
+  handleChangeTextInput: FormActionsType["handleChangeTextInput"];
+  handleChangeCheckbox: FormActionsType["handleChangeCheckbox"];
+}) => {
+  const sharedProps = { page, pageIndex, handleChangeCheckbox, handleChangeTextInput };
+  console.log({ handleChangeTextInput });
 
   const inputs = useInputs({
     inputs: characterDataSchema,
-    ...sharedProps,
     mapper: baseInputMapper,
+    ...sharedProps,
   });
 
   const abilityScoreInputs = useInputs({
-    ...sharedProps,
     mapper: abilityScoreMapper,
     ...characterAbilityScoresSchema,
+    ...sharedProps,
   });
 
   const savingThrows = useInputs({

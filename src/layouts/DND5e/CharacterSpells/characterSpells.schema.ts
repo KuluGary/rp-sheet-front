@@ -1,8 +1,10 @@
-export const characterSpellsSchema = {
+import { SchemaListType, SchemaType } from "@/types/types";
+
+export const characterSpellsSchema: SchemaType = {
   spellcastingClass: {
     type: "input",
     position: { y: 64, x: 48 },
-    placeholder: "Nombre de la clase..."
+    placeholder: "Nombre de la clase...",
   },
   spellmodifier: {
     type: "input",
@@ -21,7 +23,7 @@ export const characterSpellsSchema = {
   },
 };
 
-export const characterSpellsSpellSchema = {
+export const characterSpellsSpellSchema: Record<string, SchemaListType> = {
   cantrips: {
     startsAt: { y: 209, x: 40 },
     checked: false,

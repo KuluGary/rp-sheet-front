@@ -1,6 +1,16 @@
-import React from "react";
+import { Dispatch, SetStateAction } from "react";
 
-const AddFileDropdown = ({ show, setShow, handleSelect, type = "dnd5e" }) => {
+const AddFileDropdown = ({
+  show,
+  setShow,
+  handleSelect,
+  type = "dnd5e",
+}: {
+  show: boolean;
+  setShow: Dispatch<SetStateAction<boolean>>;
+  handleSelect: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  type: "dnd5e" | "fate-core";
+}) => {
   if (!show) return <></>;
 
   return (

@@ -1,6 +1,6 @@
 import ErrorHandler from "@/components/ErrorHandler/ErrorHandler";
 import NavBar from "@/components/NavBar/NavBar";
-import React, { useState } from "react";
+import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import AnimatedList from "../../components/AnimatedList/AnimatedList";
 import { useForm } from "../../hooks/useForm";
@@ -9,18 +9,19 @@ import CharacterData from "./CharacterData/characterData.view";
 import CharacterFeatures from "./CharacterFeatures/characterFeatures.view";
 import CharacterFlavor from "./CharacterFlavor/characterFlavor.view";
 import CharacterSpells from "./CharacterSpells/characterSpells.view";
+import { PageListType } from "@/types/types";
 
 const components = {
   data: CharacterData,
-  flavor: CharacterFlavor,
-  features: CharacterFeatures,
-  spells: CharacterSpells,
+  // flavor: CharacterFlavor,
+  // features: CharacterFeatures,
+  // spells: CharacterSpells,
 };
 
 const DND5e = () => {
-  const [pages, setPages] = useState({
+  const [pages, setPages] = useState<PageListType>({
     1: { id: uuidv4(), type: "data", data: {} },
-    2: { id: uuidv4(), type: "flavor", data: {} },
+    // 2: { id: uuidv4(), type: "flavor", data: {} },
   });
 
   const transitions = useTransitions(pages, 1132);
@@ -29,6 +30,7 @@ const DND5e = () => {
   return (
     <ErrorHandler>
       <NavBar data={pages} setData={setPages} type={"dnd5e"} onAddFile={formActions.handleAddFile} />
+
       <AnimatedList
         direction="vertical"
         components={components}

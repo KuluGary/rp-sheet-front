@@ -1,4 +1,6 @@
-export const characterDataSchema = {
+import { SchemaType } from "@/types/types";
+
+export const characterDataSchema: SchemaType = {
   player: {
     position: { y: 13, x: 71 },
     size: { width: 21, height: 2 },

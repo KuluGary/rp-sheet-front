@@ -1,4 +1,6 @@
-export const characterDataSchema = {
+import { SchemaType } from "@/types/types";
+
+export const characterDataSchema: SchemaType = {
   name: {
     position: { y: 4.9, x: 4.5 },
     size: { height: 2.6, width: 57 },

@@ -2,17 +2,29 @@ import { getNestedKey } from "@/utils/util";
 import Checkbox from "@/components/Checkbox/Checkbox";
 import Multicheckbox from "@/components/MultiCheckbox/Multicheckbox";
 import RadioGroup from "@/components/RadioGroup/RadioGroup";
+import { FormActionsType, PageType } from "@/types/types";
+
+type BaseInputProps = {
+  page: PageType["data"];
+  pageIndex: number;
+  handleChangeTextInput: FormActionsType["handleChangeTextInput"];
+  handleChangeCheckbox: FormActionsType["handleChangeCheckbox"];
+  handleChangeMultiCheckbox: FormActionsType["handleChangeMultiCheckbox"];
+  handleChangeRadioGroup: FormActionsType["handleChangeRadioGroup"];
+  handleChangeContentEditable: FormActionsType["handleChangeContentEditable"];
+};
 
 export const baseInputMapper = (
-  [name = "", data = ""],
+  [name = "", data = {}]: [string, PageType["data"]],
   {
-    page = 1,
+    page,
+    pageIndex = 1,
     handleChangeTextInput = () => {},
     handleChangeCheckbox = () => {},
     handleChangeMultiCheckbox = () => {},
     handleChangeRadioGroup = () => {},
     handleChangeContentEditable = () => {},
-  }
+  }: BaseInputProps
 ) => {
   const { type, appearance, position, size, placeholder = "", className } = data;
 
@@ -23,7 +35,7 @@ export const baseInputMapper = (
         key={name}
         placeholder={placeholder}
         value={getNestedKey(name, page) ?? ""}
-        onChange={handleChangeTextInput}
+        onChange={(ev) => handleChangeTextInput(pageIndex, ev)}
         className={`absolute ${className}`}
         style={{
           top: `${position.y}%`,
@@ -57,7 +69,7 @@ export const baseInputMapper = (
         name={name}
         key={name}
         value={getNestedKey(name, page)}
-        onClick={handleChangeMultiCheckbox}
+        onClick={(name, value) => handleChangeMultiCheckbox(page, name, value)}
         style={{
           top: `${position.y}%`,
           left: `${position.x}%`,
@@ -66,13 +78,14 @@ export const baseInputMapper = (
       />
     );
   }
+
   if (type === "radiogroup") {
     return (
       <RadioGroup
         name={name}
         key={name}
         value={getNestedKey(name, page)}
-        onClick={handleChangeRadioGroup}
+        onClick={(name, value) => handleChangeRadioGroup(page, name, value)}
         className={className}
         amount={data.amount}
         appearance={appearance}
@@ -85,6 +98,7 @@ export const baseInputMapper = (
       />
     );
   }
+
   if (type === "contenteditable") {
     return (
       <div
@@ -107,7 +121,7 @@ export const baseInputMapper = (
         <div
           contentEditable
           className={`${data.textarea.className} whitespace-pre-line`}
-          onBlur={(e) => handleChangeContentEditable(name, e.currentTarget.outerText)}
+          onBlur={(e) => handleChangeContentEditable(page, name, e.currentTarget.outerText)}
           dangerouslySetInnerHTML={{ __html: getNestedKey(name, page) }}
           suppressContentEditableWarning={true}
         />
@@ -121,7 +135,10 @@ export const baseInputMapper = (
       key={name}
       placeholder={placeholder}
       value={getNestedKey(name, page) ?? ""}
-      onChange={handleChangeTextInput}
+      onChange={(e) => {
+        console.log({ pageIndex, e });
+        handleChangeTextInput(pageIndex, e);
+      }}
       className={`absolute ${className} overflow-hidden text-ellipsis`}
       style={{
         top: `${position.y}%`,
@@ -133,12 +150,11 @@ export const baseInputMapper = (
   );
 };
 
-export const abilityScoreMapper = (abilityScore, props) => {
-  const { page, distanceMultiplier, startsAt, secondaryElementOffset, i, handleChangeTextInput, handleChangeCheckbox } =
-    props;
+export const abilityScoreMapper = (abilityScore: string, props: AdvancedInputProps) => {
+  const { page, distanceMultiplier, startsAt, secondaryElementOffset, i, handleChangeTextInput } = props;
   const positionInput = startsAt + distanceMultiplier * i;
   const positionResult = positionInput + secondaryElementOffset;
-  const getModifier = (stat) => Math.floor((parseInt(stat) - 10) / 2);
+  const getModifier = (stat: string) => Math.floor((parseInt(stat) - 10) / 2);
 
   return (
     <section id={`${abilityScore}-score`} key={abilityScore}>
@@ -152,7 +168,7 @@ export const abilityScoreMapper = (abilityScore, props) => {
         type="text"
         key={abilityScore}
         value={page?.abilityScores?.[abilityScore]}
-        onChange={handleChangeTextInput}
+        onChange={(ev) => handleChangeTextInput(page.index, ev)}
         name={`abilityScores.${abilityScore}`}
         className={`absolute left-14 w-4 aspect-square text-xs text-center`}
         style={{ top: positionInput }}
@@ -161,7 +177,7 @@ export const abilityScoreMapper = (abilityScore, props) => {
   );
 };
 
-export const skillSavingThrowMapper = (element, props) => {
+export const skillSavingThrowMapper = (element: string, props: AdvancedInputProps) => {
   const {
     page,
     distanceMultiplier,
@@ -186,7 +202,7 @@ export const skillSavingThrowMapper = (element, props) => {
       <input
         type="text"
         value={page?.[type]?.[element]?.value}
-        onChange={handleChangeTextInput}
+        onChange={(ev) => handleChangeTextInput(i, ev)}
         name={`${type}.${element}.value`}
         className={`absolute left-[140px] w-4 aspect-square text-xs text-center`}
         style={{ top: positionInput }}
@@ -195,7 +211,7 @@ export const skillSavingThrowMapper = (element, props) => {
   );
 };
 
-export const deathSavesMapper = (props) => {
+export const deathSavesMapper = (props: AdvancedInputProps) => {
   const { page, startsAt, distanceMultiplier, i, type, handleChangeCheckbox } = props;
 
   return (
@@ -209,7 +225,7 @@ export const deathSavesMapper = (props) => {
   );
 };
 
-export const attacksMapper = (props) => {
+export const attacksMapper = (props: AdvancedInputProps) => {
   const { page, startsAt, distanceMultiplier, i, handleChangeTextInput } = props;
 
   return (
@@ -243,7 +259,7 @@ export const attacksMapper = (props) => {
   );
 };
 
-export const coinsMapper = (coin, props) => {
+export const coinsMapper = (coin: string, props: AdvancedInputProps) => {
   const { page, handleChangeTextInput, startsAt, distanceMultiplier, i } = props;
 
   return (
@@ -259,9 +275,9 @@ export const coinsMapper = (coin, props) => {
   );
 };
 
-export const skillMapper = ([type, skillData], props) => {
+export const skillMapper = ([type, skillData]: [string, Record<string, any>], props: AdvancedInputProps) => {
   const { startsAt } = skillData;
-  const { page, handleChangeTextInput } = props;
+  const { page, i, handleChangeTextInput } = props;
 
   return (
     <section id={type}>
@@ -270,7 +286,7 @@ export const skillMapper = ([type, skillData], props) => {
           name={`skills.${type}.${index}`}
           key={`skills.${type}.${index}`}
           value={page?.skills?.[type]?.[index]}
-          onChange={handleChangeTextInput}
+          onChange={(ev) => handleChangeTextInput(i, ev)}
           className="absolute h-[14px] w-[70px] text-sm"
           style={{ left: startsAt.x + 82 * index, top: startsAt.y }}
         />

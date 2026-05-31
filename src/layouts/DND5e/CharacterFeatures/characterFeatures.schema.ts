@@ -1,4 +1,6 @@
-export const characterFeaturesSchema = {
+import { SchemaType } from "@/types/types";
+
+export const characterFeaturesSchema: SchemaType = {
   feature: {
     type: "textarea",
     position: { y: 30, x: 40 },
